@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Sleep Disorder Prediction</title>
+
+<style>
+
+body{
+background-image:url("{{ url_for('static', filename='sleepdisorder.jpg') }}");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+min-height:100vh;
+padding:40px 0;
+
+margin:0;
+font-family:Arial;
+}
+
+.container{
+width:800px;
+background:rgba(255,255,255,0.9);
+padding:35px;
+border-radius:15px;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* TITLE */
+
+h1{
+text-align:center;
+color:#3d4df5;
+font-weight:bold;
+font-size:32px;
+margin-bottom:25px;
+}
+
+/* FORM GRID */
+
+form{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+}
+
+/* LABELS */
+
+label{
+font-weight:bold;
+}
+
+/* INPUT FIELDS */
+
+input,select{
+padding:10px;
+border-radius:6px;
+border:1px solid #ddd;
+font-size:14px;
+width:100%;
+box-sizing:border-box;
+}
+
+/* BUTTON */
+
+button{
+grid-column:span 2;
+padding:14px;
+background:#5a5af7;
+color:white;
+border:none;
+border-radius:6px;
+font-size:18px;
+cursor:pointer;
+margin-top:10px;
+}
+
+button:hover{
+background:#3d3df5;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Sleep Disorder Prediction Form</h1>
+
+<form action="/predict" method="POST">
+
+<label>Gender</label>
+<select name="Gender">
+<option value="1">Male</option>
+<option value="2">Female</option>
+</select>
+
+<label>Age</label>
+<input type="number" name="Age" required>
+
+<label>Occupation</label>
+<select name="Occupation">
+
+{% for occ in occupations %}
+<option value="{{occ}}">{{occ}}</option>
+{% endfor %}
+
+</select>
+
+<label>Sleep Duration (Hours)</label>
+<input type="number" step="0.1" name="Sleep Duration">
+
+<label>Quality of Sleep (1-10)</label>
+<input type="number" min="1" max="10" name="Quality of Sleep">
+
+<label>Physical Activity Level</label>
+<input type="number" name="Physical Activity Level">
+
+<label>Stress Level (1-10)</label>
+<input type="number" min="1" max="10" name="Stress Level">
+
+<label>BMI Category</label>
+<select name="BMI Category">
+<option value="1">Normal</option>
+<option value="2">Overweight</option>
+<option value="3">Obese</option>
+</select>
+
+<label>Heart Rate (bpm)</label>
+<input type="number" name="Heart Rate">
+
+<label>Daily Steps</label>
+<input type="number" name="Daily Steps">
+
+<label>Systolic BP</label>
+<input type="number" name="Systolic BP">
+
+<label>Diastolic BP</label>
+<input type="number" name="Diastolic BP">
+
+<button type="submit">Predict</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
